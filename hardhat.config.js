@@ -1,8 +1,16 @@
 require("@nomiclabs/hardhat-waffle");
 require("hardhat-deploy");
 require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-etherscan");
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
+require("dotenv").config();
+
+const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
+console.log(RINKEBY_RPC_URL);
+console.log(ETHERSCAN_API_KEY);
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
 
@@ -22,16 +30,18 @@ module.exports = {
   networks: {
     hardhat: {},
     rinkeby: {
-      url:, 
-      accounts: {
-
-      }
-    }
+      url: RINKEBY_RPC_URL,
+      accounts: [PRIVATE_KEY],
+      saveDeployments: true,
+    },
   },
   solidity: "0.8.4",
   namedAccounts: {
     deployer: {
       default: 0, // Account 0 will be the default account
     },
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_API_KEY,
   },
 };

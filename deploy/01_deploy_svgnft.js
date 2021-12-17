@@ -27,10 +27,10 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
 
   // verification of contract, this will only work on testnet and mainnet NOT localhost
   const networkName = networkConfig[chainId]["name"];
-  log(`Verify with: \n npx hardhat verify --network ${networkName} ${svgNFT.address}`);
+  log(`☑️ Verify with:\n npx hardhat verify --network ${networkName} ${svgNFT.address}`);
 
   let transactionResponse = await svgNFT.create(svg);
   let receipt = await transactionResponse.wait(1); //wait for 1 block
-  log(`You've made an NFT`);
-  log(`You can view the tokenURI here ${await svgNFT.tokenURI(0)}`);
+  log(`🚀 You've made an NFT`);
+  log(`🚀 You can view the tokenURI here ${await svgNFT.tokenURI(0)}`);
 };
