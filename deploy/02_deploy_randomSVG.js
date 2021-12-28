@@ -55,6 +55,11 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   tokenId = receipt.events[3].topics[2]; // 4th event emitted is the CreatedRandomSVG event, topics[0] will be the hash of the entire event
   log(`🟠 Waiting for Chainlink node to respond...`);
   if (chainId != 31337) {
+    await new Promise((r) => setTimeout(r, 180000));
+    log(`Now let's finish the mint...`);
+    let finish_tx = await randomSVG.finishMint(tokenId, { gasLimit: 2000000 });
+    await finish_tx.wait(1);
+    log(`You can view the tokenURI here ${await randomSVG.tokenURI(0)}`);
   } else {
     const VRFCoordinatorMock = await deployments.get("VRFCoordinatorMock");
     vrfCoordinator = await ethers.getContractAt("VRFCoordinatorMock", VRFCoordinatorMock.address, signer);
