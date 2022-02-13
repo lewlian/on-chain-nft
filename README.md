@@ -2,14 +2,6 @@
 
 First On-chain NFT metadata project following Patrick Collins. (https://www.youtube.com/watch?v=9oERTH9Bkw0)
 
-<br/>
-<p align="center">
-<a href="https://chain.link" target="_blank">
-<img src="./img/randomsvg.svg" width="225" alt="Random NFT logo">
-</a>
-</p>
-<br/>
-
 # All On Chain Generated NFT
 
 This is a repo that shows 2 things:
